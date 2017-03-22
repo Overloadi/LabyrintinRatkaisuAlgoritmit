@@ -11,19 +11,23 @@ namespace LabyrinttiAlgoritmit
     class Program
     {
         public static bool solved = false;
-        public static int startcolindex = 4;
+        public static int startcolindex = 3;
         public static int startrowindex = 0;
         public static int currentcolindex = startcolindex;
         public static int currentrowindex = startrowindex;
         public static int prevcolindex = 0;
         public static int prevrowindex = 0;
-        public static int[,] matrix = new int[6, 6] { 
-                                            {0, 0, 0, 0, 3, 0 },
-                                            {0, 1, 0, 1, 1, 0 },
-                                            {0, 1, 1, 1, 0, 0 },
-                                            {0, 1, 0, 1, 1, 4 },
-                                            {0, 1, 1, 0, 0, 0 },
-                                            {0, 0, 0, 0, 0, 0 } };
+        public static int[,] matrix = new int[10, 10] { 
+                                            {0, 0, 0, 3, 0, 0, 0, 0, 0, 0 },
+                                            {0, 1, 1, 1, 0, 0, 0, 1, 1, 0 },
+                                            {0, 1, 0, 1, 1, 1, 1, 1, 0, 0 },
+                                            {0, 1, 0, 1, 0, 1, 0, 1, 0, 0 },
+                                            {0, 1, 0, 1, 1, 1, 0, 1, 1, 4 },
+                                            {0, 1, 0, 0, 0, 1, 0, 0, 1, 0 },
+                                            {0, 1, 0, 0, 0, 1, 0, 1, 1, 0 },
+                                            {0, 1, 0, 1, 1, 1, 0, 0, 1, 0 },
+                                            {0, 1, 1, 1, 0, 1, 1, 1, 1, 0 },
+                                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },};
         public static void wallFollower()
         {
             int choice = 0;
@@ -34,9 +38,30 @@ namespace LabyrinttiAlgoritmit
             for (int row1 = 0; row1 < rowCount1; row1++)
             {
                 for (int col1 = 0; col1 < colCount1; col1++)
-                    Console.Write(String.Format("{0}\t", matrix[row1, col1]));
+                    if (matrix[row1, col1] == 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(String.Format("{0} ", matrix[row1, col1]));
+                    }
+                    else if (matrix[row1, col1] == 3 || matrix[row1, col1] == 4)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(String.Format("{0} ", matrix[row1, col1]));
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(String.Format("{0} ", matrix[row1, col1]));
+                    }
+
                 Console.WriteLine();
+                
             }
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
 
             // Jos alkupiste on ylhäällä
             if (currentrowindex == 0)
@@ -193,26 +218,42 @@ namespace LabyrinttiAlgoritmit
                         break;
 
                 } // Switch case loppu
-
-            
-                
-
-
-                // Jos ei löydy ympäriltä ykkösiä, mennään kakkosia takasipäin. 
-
-                
                 
             } // While loppu
 
 
-            Console.WriteLine("JEEEEEEEEE EXITTI LOYTYI");
+            Console.WriteLine("JEEEEEEEEE EXITTI LOYTYI PAIKASTA RIVI: " + currentrowindex + " SARAKE: " + currentcolindex);
             // TAULUKON TULOSTUS
             var rowCount = matrix.GetLength(0);
             var colCount = matrix.GetLength(1);
             for (int row = 0; row < rowCount; row++)
             {
                 for (int col = 0; col < colCount; col++)
-                    Console.Write(String.Format("{0}\t", matrix[row, col]));
+                    if (matrix[row, col] == 2)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(String.Format("{0} ", matrix[row, col]));
+                    }
+                else if (matrix[row, col] == 3 || matrix[row, col] == 4)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(String.Format("{0} ", matrix[row, col]));
+                    }
+                else if(matrix[row, col] == 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(String.Format("{0} ", matrix[row, col]));
+                    }
+                else
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(String.Format("{0} ", matrix[row, col]));
+                    }
+
                 Console.WriteLine();
             }
 
@@ -230,7 +271,7 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevcolindex = currentcolindex;
                 currentcolindex--;
-                if (prevrowindex == 0 || prevrowindex != currentrowindex) { prevrowindex++; }
+                if (prevrowindex != currentrowindex) { prevrowindex = currentrowindex; }
                 Console.WriteLine("Liikuttu vasemmalle");
                 return true;
             }
@@ -249,7 +290,7 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevrowindex = currentrowindex;
                 currentrowindex++;
-                if(prevcolindex > currentcolindex) { prevcolindex--; }
+                if (prevcolindex != currentcolindex) { prevcolindex = currentcolindex; }
                 Console.WriteLine("Liikuttu alas");
                 return true;
             }
@@ -268,6 +309,7 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevcolindex = currentcolindex;
                 currentcolindex++;
+                if (prevrowindex != currentrowindex) { prevrowindex = currentrowindex; }
                 Console.WriteLine("Liikuttu oikealle");
                 return true;
             }
@@ -286,6 +328,7 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevrowindex = currentrowindex;
                 currentrowindex--;
+                if (prevcolindex != currentcolindex) { prevcolindex = currentcolindex; }
                 Console.WriteLine("Liikuttu ylos");
                 return true;
             }
@@ -295,6 +338,7 @@ namespace LabyrinttiAlgoritmit
 
 
         // Jos umpikuja yllättää siirrytään lukemaan kakkosia
+        // Katsotaan vasemmalle
         public static bool lookLeft4()
         {
             if (matrix[currentrowindex, currentcolindex - 1] == 2)
@@ -306,12 +350,14 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevcolindex = currentcolindex;
                 currentcolindex--;
+                if (prevrowindex != currentrowindex) { prevrowindex = currentrowindex; }
                 Console.WriteLine("Liikuttu vasemmalle");
                 return true;
             }
             return false;
         }
 
+        // Katsotaan alas
         public static bool lookDown4()
         {
             if (matrix[currentrowindex + 1, currentcolindex] == 2)
@@ -323,12 +369,14 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevrowindex = currentrowindex;
                 currentrowindex++;
+                if (prevcolindex != currentcolindex) { prevcolindex = currentcolindex; }
                 Console.WriteLine("Liikuttu alas");
                 return true;
             }
             return false;
         }
 
+        // Katsotaan oikealle
         public static bool lookRight4()
         {
             if (matrix[currentrowindex, currentcolindex + 1] == 2)
@@ -340,12 +388,14 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevcolindex = currentcolindex;
                 currentcolindex++;
+                if (prevrowindex != currentrowindex) { prevrowindex = currentrowindex; }
                 Console.WriteLine("Liikuttu oikealle");
                 return true;
             }
             return false;
         }
 
+        // Katsotaan ylös
         public static bool lookUp4()
         {
             if (matrix[currentrowindex - 1, currentcolindex] == 2)
@@ -357,14 +407,14 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevrowindex = currentrowindex;
                 currentrowindex--;
+                if (prevcolindex != currentcolindex) { prevcolindex = currentcolindex; }
                 Console.WriteLine("Liikuttu ylos");
                 return true;
             }
             return false;
         }
 
-
-        static void Main(string[] args)
+            static void Main(string[] args)
         {
             wallFollower();
             // Maze maze = new Maze(matrix);
