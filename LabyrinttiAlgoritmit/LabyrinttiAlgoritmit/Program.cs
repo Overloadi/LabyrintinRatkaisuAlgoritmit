@@ -11,19 +11,19 @@ namespace LabyrinttiAlgoritmit
     class Program
     {
         public static bool solved = false;
-        public static int startcolindex = 2;
+        public static int startcolindex = 4;
         public static int startrowindex = 0;
         public static int currentcolindex = startcolindex;
         public static int currentrowindex = startrowindex;
         public static int prevcolindex = 0;
         public static int prevrowindex = 0;
         public static int[,] matrix = new int[6, 6] { 
-                                            {0, 0, 3, 0, 0, 0 },
-                                            {0, 0, 1, 0, 0, 0 },
-                                            {0, 1, 1, 1, 1, 0 },
-                                            {0, 1, 0, 0, 1, 0 },
-                                            {0, 1, 1, 1, 1, 0 },
-                                            {0, 0, 0, 0, 4, 0 } };
+                                            {0, 0, 0, 0, 3, 0 },
+                                            {0, 1, 0, 1, 1, 0 },
+                                            {0, 1, 1, 1, 0, 0 },
+                                            {0, 1, 0, 1, 1, 4 },
+                                            {0, 1, 1, 0, 0, 0 },
+                                            {0, 0, 0, 0, 0, 0 } };
         public static void wallFollower()
         {
             int choice = 0;
@@ -102,11 +102,35 @@ namespace LabyrinttiAlgoritmit
                     choice = 4;
                 }
 
+                // Jos edellinen ruutu oli nykyisen yläpuolella ja ympärillä vain 0 tai 2
+                if (currentrowindex > prevrowindex && (matrix[currentrowindex, currentcolindex - 1] == 0 || matrix[currentrowindex, currentcolindex - 1] == 2) && (matrix[currentrowindex + 1, currentcolindex] == 0 || matrix[currentrowindex + 1, currentcolindex] == 2) && (matrix[currentrowindex, currentcolindex + 1] == 0 || matrix[currentrowindex, currentcolindex + 1] == 2) && (matrix[currentrowindex - 1, currentcolindex] == 0 || matrix[currentrowindex - 1, currentcolindex] == 2))
+                {
+                    choice = 5;
+                }
+
+                // Jos edellinen ruutu oli nykyisen alapuolella ja ympärillä vain 0 tai 2
+                if (currentrowindex < prevrowindex && (matrix[currentrowindex, currentcolindex - 1] == 0 || matrix[currentrowindex, currentcolindex - 1] == 2) && (matrix[currentrowindex + 1, currentcolindex] == 0 || matrix[currentrowindex + 1, currentcolindex] == 2) && (matrix[currentrowindex, currentcolindex + 1] == 0 || matrix[currentrowindex, currentcolindex + 1] == 2) && (matrix[currentrowindex - 1, currentcolindex] == 0 || matrix[currentrowindex - 1, currentcolindex] == 2))
+                {
+                    choice = 6;
+                }
+
+                // Jos edellinen ruutu oli nykyisen vasemmalla ja ympärillä vain 0 tai 2
+                if (currentcolindex > prevcolindex && (matrix[currentrowindex, currentcolindex - 1] == 0 || matrix[currentrowindex, currentcolindex - 1] == 2) && (matrix[currentrowindex + 1, currentcolindex] == 0 || matrix[currentrowindex + 1, currentcolindex] == 2) && (matrix[currentrowindex, currentcolindex + 1] == 0 || matrix[currentrowindex, currentcolindex + 1] == 2) && (matrix[currentrowindex - 1, currentcolindex] == 0 || matrix[currentrowindex - 1, currentcolindex] == 2))
+                {
+                    choice = 7;
+                }
+
+                // Jos edellinen ruutu oli nykyisen oikealla ja ympärillä vain 0 tai 2
+                if (currentcolindex < prevcolindex && (matrix[currentrowindex, currentcolindex - 1] == 0 || matrix[currentrowindex, currentcolindex - 1] == 2) && (matrix[currentrowindex + 1, currentcolindex] == 0 || matrix[currentrowindex + 1, currentcolindex] == 2) && (matrix[currentrowindex, currentcolindex + 1] == 0 || matrix[currentrowindex, currentcolindex + 1] == 2) && (matrix[currentrowindex - 1, currentcolindex] == 0 || matrix[currentrowindex - 1, currentcolindex] == 2))
+                {
+                    choice = 8;
+                }
+
                 switch (choice)
                     {
                     // Jos edellinen ruutu oli nykyisen yläpuolella
                     case 1:
-                        lookLeft();
+                        if (lookLeft() == true) { break; }
                         if (lookDown() == true) { break; }
                         if (lookRight() == true) { break; }
                         if (lookUp() == true) { break; }
@@ -114,32 +138,61 @@ namespace LabyrinttiAlgoritmit
 
                     // Jos edellinen ruutu oli nykyisen alapuolella
                     case 2:
-                        lookRight();
+                        if (lookRight() == true) { break; }
                         if (lookUp() == true) { break; }
                         if (lookLeft() == true) { break; }
                         if (lookDown() == true) { break; }
-                        
                         break;
 
                     // Jos edellinen ruutu oli nykyisen vasemmalla
                     case 3:
-                        lookDown();
+                        if (lookDown() == true) { break; }
                         if (lookRight() == true) { break; }
                         if (lookUp() == true) { break; }
                         if (lookLeft() == true) { break; }
-                        
                         break;
 
                     // Jos edellinen ruutu oli nykyisen oikealla
                     case 4:
-                        lookUp();
+                        if (lookUp() == true) { break; }
                         if (lookLeft() == true) { break; }
                         if (lookDown() == true) { break; }
                         if (lookRight() == true) { break; }
-                        
                         break;
-                    
-                    } // Switch case loppu
+
+                    // Jos edellinen ruutu oli nykyisen yläpuolella ja ympärillä vain 0 tai 2
+                    case 5:
+                        if (lookLeft4() == true) { break; }
+                        if (lookDown4() == true) { break; }
+                        if (lookRight4() == true) { break; }
+                        if (lookUp4() == true) { break; }
+                        break;
+
+                    // Jos edellinen ruutu oli nykyisen alapuolella ja ympärillä vain 0 tai 2
+                    case 6:
+                        if (lookRight4() == true) { break; }
+                        if (lookUp4() == true) { break; }
+                        if (lookLeft4() == true) { break; }
+                        if (lookDown4() == true) { break; }
+                        break;
+
+                    // Jos edellinen ruutu oli nykyisen vasemmalla ja ympärillä vain 0 tai 2
+                    case 7:
+                        if (lookDown4() == true) { break; }
+                        if (lookRight4() == true) { break; }
+                        if (lookUp4() == true) { break; }
+                        if (lookLeft4() == true) { break; }
+                        break;
+
+                    // Jos edellinen ruutu oli nykyisen oikealla ja ympärillä vain 0 tai 2
+                    case 8:
+                        if (lookUp4() == true) { break; }
+                        if (lookLeft4() == true) { break; }
+                        if (lookDown4() == true) { break; }
+                        if (lookRight4() == true) { break; }
+                        break;
+
+                } // Switch case loppu
 
             
                 
@@ -152,7 +205,7 @@ namespace LabyrinttiAlgoritmit
             } // While loppu
 
 
-            Console.WriteLine("Jee exitti löyty");
+            Console.WriteLine("JEEEEEEEEE EXITTI LOYTYI");
             // TAULUKON TULOSTUS
             var rowCount = matrix.GetLength(0);
             var colCount = matrix.GetLength(1);
@@ -177,6 +230,7 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevcolindex = currentcolindex;
                 currentcolindex--;
+                if (prevrowindex == 0 || prevrowindex != currentrowindex) { prevrowindex++; }
                 Console.WriteLine("Liikuttu vasemmalle");
                 return true;
             }
@@ -195,6 +249,7 @@ namespace LabyrinttiAlgoritmit
                 matrix[currentrowindex, currentcolindex] = 2;
                 prevrowindex = currentrowindex;
                 currentrowindex++;
+                if(prevcolindex > currentcolindex) { prevcolindex--; }
                 Console.WriteLine("Liikuttu alas");
                 return true;
             }
@@ -236,6 +291,78 @@ namespace LabyrinttiAlgoritmit
             }
             return false;
         }
+
+
+
+        // Jos umpikuja yllättää siirrytään lukemaan kakkosia
+        public static bool lookLeft4()
+        {
+            if (matrix[currentrowindex, currentcolindex - 1] == 2)
+            {
+                if (matrix[currentrowindex, currentcolindex - 1] == 4)
+                {
+                    solved = true;
+                }
+                matrix[currentrowindex, currentcolindex] = 2;
+                prevcolindex = currentcolindex;
+                currentcolindex--;
+                Console.WriteLine("Liikuttu vasemmalle");
+                return true;
+            }
+            return false;
+        }
+
+        public static bool lookDown4()
+        {
+            if (matrix[currentrowindex + 1, currentcolindex] == 2)
+            {
+                if (matrix[currentrowindex + 1, currentcolindex] == 4)
+                {
+                    solved = true;
+                }
+                matrix[currentrowindex, currentcolindex] = 2;
+                prevrowindex = currentrowindex;
+                currentrowindex++;
+                Console.WriteLine("Liikuttu alas");
+                return true;
+            }
+            return false;
+        }
+
+        public static bool lookRight4()
+        {
+            if (matrix[currentrowindex, currentcolindex + 1] == 2)
+            {
+                if (matrix[currentrowindex, currentcolindex + 1] == 4)
+                {
+                    solved = true;
+                }
+                matrix[currentrowindex, currentcolindex] = 2;
+                prevcolindex = currentcolindex;
+                currentcolindex++;
+                Console.WriteLine("Liikuttu oikealle");
+                return true;
+            }
+            return false;
+        }
+
+        public static bool lookUp4()
+        {
+            if (matrix[currentrowindex - 1, currentcolindex] == 2)
+            {
+                if (matrix[currentrowindex - 1, currentcolindex] == 4)
+                {
+                    solved = true;
+                }
+                matrix[currentrowindex, currentcolindex] = 2;
+                prevrowindex = currentrowindex;
+                currentrowindex--;
+                Console.WriteLine("Liikuttu ylos");
+                return true;
+            }
+            return false;
+        }
+
 
         static void Main(string[] args)
         {
