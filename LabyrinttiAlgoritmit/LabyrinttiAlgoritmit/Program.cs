@@ -17,7 +17,7 @@ namespace LabyrinttiAlgoritmit
         public static int currentrowindex = startrowindex;
         public static int prevcolindex = 0;
         public static int prevrowindex = 0;
-        public static int[,] matrix = new int[10, 10] { 
+        public static int[,] matrix = new int[10, 10] {
                                             {0, 0, 0, 3, 0, 0, 0, 0, 0, 0 },
                                             {0, 1, 1, 1, 0, 0, 0, 1, 1, 0 },
                                             {0, 1, 0, 1, 1, 1, 1, 1, 0, 0 },
@@ -82,19 +82,19 @@ namespace LabyrinttiAlgoritmit
             }
 
             // Jos alkupiste on alhaalla
-            else if (currentrowindex == 5)
+            else if (currentrowindex == 9)
             {
                 currentrowindex--;
-                prevrowindex = 5;
+                prevrowindex = 9;
                 prevcolindex = currentcolindex;
                 Console.WriteLine("Liikuttu ylös");
             }
 
             // Jos alkupiste on oikella
-            else if (currentcolindex == 5)
+            else if (currentcolindex == 9)
             {
                 currentcolindex--;
-                prevcolindex = 5;
+                prevcolindex = 9;
                 prevrowindex = currentrowindex;
                 Console.WriteLine("Liikuttu vasemmalle");
             }
