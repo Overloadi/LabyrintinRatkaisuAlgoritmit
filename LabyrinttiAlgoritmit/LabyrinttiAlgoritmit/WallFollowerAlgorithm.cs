@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace LabyrinttiAlgoritmit
 {
+    /// <summary>
+    /// Algoritmi, jolla seurataan aina labyrintin oikeaa seinää, jos mahdollista.
+    /// Kuljettu reitti merkataan matriisiin kakkosella, jotta algoritmi pääsee pois umpikujasta.
+    /// </summary>
     class WallFollowerAlgorithm
     {
         public static bool solved = false;

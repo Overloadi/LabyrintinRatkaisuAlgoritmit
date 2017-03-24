@@ -12,7 +12,10 @@ namespace LabyrinttiAlgoritmit
     class Program
     {
 
-
+        /// <summary>
+        /// Pääohjelma, jossa ajetaan labyrinttien ratkaisualgoritmit
+        /// </summary>
+        /// <param name="args">Ei käytetä</param>
             static void Main(string[] args)
         {
             // Stopwatch timer = new Stopwatch();

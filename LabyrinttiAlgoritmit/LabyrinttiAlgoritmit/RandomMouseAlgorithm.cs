@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace LabyrinttiAlgoritmit
 {
+    /// <summary>
+    /// Algoritmi, jolla valitaan satunnaisesti suunta, mihinkä labyrintissä kuljetaan, kun risteys tulee vastaan. 
+    /// Algoritmi jatkaa liikkumista arvottuun suuntaan, kunnes tulee risteys vastaan, jolloin arvotaan taas suunta uudestaan.
+    /// </summary>
     class RandomMouseAlgorithm
     {
         public static bool solved = false;
@@ -330,10 +334,20 @@ namespace LabyrinttiAlgoritmit
             }
             return false;
         }
-        // ALAS = 1
-        // YLÖS = 2
-        // OIKEA = 3
-        // VASEN = 4
+
+
+        /// <summary>
+        /// Arvotaan luku, joka kertoo, mihinkä suuntaan seuraavaksi liikutaan.
+        /// </summary>
+        /// <param name="prev">Suunta, mistä risteykseen on tultu</param>
+        /// <returns>
+        /// Palautetaan suunta, mihinpäin mennään.
+        /// Suunnat:
+        /// ALAS = 1
+        /// YLÖS = 2
+        /// OIKEA = 3
+        /// VASEN = 4
+        /// </returns>
         public static int generateRandom(int prev)
         {
             List<int> luvut = new List<int>();
@@ -346,7 +360,7 @@ namespace LabyrinttiAlgoritmit
             // jos vasemmalle pääsee, random lukuihin lisätään 4
             if (matrix[currentrowindex, currentcolindex - 1] == 1) { luvut.Add(4); }
             // jos pääsee vain takasinpäin, mennään sinne
-            if (luvut.Count == 1) { return luvut.ElementAt(1); }
+            if (luvut.Count == 1) { return luvut.ElementAt(0); }
             Random rand = new Random();
             int random = rand.Next(1, 4);
             if (random == prev)
