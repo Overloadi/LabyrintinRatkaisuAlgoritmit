@@ -268,6 +268,7 @@ namespace LabyrinttiAlgoritmit
                 if (matrix[currentrowindex, currentcolindex - 1] == 4)
                 {
                     solved = true;
+                    return false;
                 }
                 prevcolindex = currentcolindex;
                 currentcolindex--;
@@ -287,6 +288,7 @@ namespace LabyrinttiAlgoritmit
                 if (matrix[currentrowindex + 1, currentcolindex] == 4)
                 {
                     solved = true;
+                    return false;
                 }
                 prevrowindex = currentrowindex;
                 currentrowindex++;
@@ -306,6 +308,7 @@ namespace LabyrinttiAlgoritmit
                 if (matrix[currentrowindex, currentcolindex + 1] == 4)
                 {
                     solved = true;
+                    return false;
                 }
                 prevcolindex = currentcolindex;
                 currentcolindex++;
@@ -325,6 +328,7 @@ namespace LabyrinttiAlgoritmit
                 if (matrix[currentrowindex - 1, currentcolindex] == 4)
                 {
                     solved = true;
+                    return false;
                 }
                 prevrowindex = currentrowindex;
                 currentrowindex--;
