@@ -13,13 +13,13 @@ namespace LabyrinttiAlgoritmit
     class RandomMouseAlgorithm
     {
         public static bool solved = false;
-        public static int startcolindex = 3;
+        public static int startcolindex = 6;
         public static int startrowindex = 0;
         public static int currentcolindex = startcolindex;
         public static int currentrowindex = startrowindex;
         public static int prevcolindex = 0;
         public static int prevrowindex = 0;
-        public static int[,] matrix = new int[10, 10] {
+        public static int[,] matrix1 = new int[10, 10] {
                                             {0, 0, 0, 3, 0, 0, 0, 0, 0, 0 },
                                             {0, 1, 0, 1, 0, 0, 0, 1, 1, 0 },
                                             {0, 1, 0, 1, 1, 1, 1, 1, 0, 0 },
@@ -30,6 +30,37 @@ namespace LabyrinttiAlgoritmit
                                             {0, 1, 0, 1, 0, 1, 0, 0, 1, 0 },
                                             {0, 1, 0, 1, 0, 1, 1, 1, 1, 0 },
                                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },};
+        public static int[,] matrix = new int[30,30]
+{{0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,0},
+{0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0},
+{0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0},
+{0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0},
+{0,0,0,1,0,0,0,0,0,1,0,0,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0,1,0,0},
+{0,0,0,1,1,1,1,0,0,1,0,0,1,0,0,0,0,1,0,1,0,0,1,1,1,1,0,1,0,0},
+{0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,1,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,0,1,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,0,0,1,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,0,0,0,0,1,0,0},
+{0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0},
+{0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,1,0,0},
+{0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,0},
+{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0},
+{0,0,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,0,1,0,0},
+{0,0,1,0,0,0,1,0,0,1,1,1,1,1,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,0,1,0,0,0,1,1,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0},
+{0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0},
+{0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,1,1,1,0,0},
+{0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0},
+{0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0},
+{0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0},
+{0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},};
 
         public static void randomMouseAlgorithm()
         {
@@ -112,7 +143,7 @@ namespace LabyrinttiAlgoritmit
                 // Jos edellinen ruutu oli nykyisen yläpuolella, jatketaan alas
                 if (currentrowindex > prevrowindex)
                 {
-                    choice = 1;
+                    choice = 2;
                     
                     if (lookDown() == true) {
                         continue;
@@ -143,7 +174,7 @@ namespace LabyrinttiAlgoritmit
                 // Jos edellinen ruutu oli nykyisen alapuolella, jatketaan ylös
                 if (currentrowindex < prevrowindex)
                 {
-                    choice = 2;
+                    choice = 1;
 
                     if (lookUp() == false)
                     {
@@ -171,7 +202,7 @@ namespace LabyrinttiAlgoritmit
                 // Jos edellinen ruutu oli nykyisen vasemmalla, jatketaan oikealle
                 if (currentcolindex > prevcolindex)
                 {
-                    choice = 3;
+                    choice = 4;
                     if (lookRight() == false)
                     {
                         choice = generateRandom(choice);
@@ -198,7 +229,7 @@ namespace LabyrinttiAlgoritmit
                 // Jos edellinen ruutu oli nykyisen oikealla, jatketaan vasemmalle
                 if (currentcolindex < prevcolindex)
                 {
-                    choice = 4;
+                    choice = 3;
                     if (lookLeft() == false)
                     {
                         choice = generateRandom(choice);
@@ -364,6 +395,10 @@ namespace LabyrinttiAlgoritmit
             // jos vasemmalle pääsee, random lukuihin lisätään 4
             if (matrix[currentrowindex, currentcolindex - 1] == 1) { luvut.Add(4); }
             // jos pääsee vain takasinpäin, mennään sinne
+            if (luvut.Contains(prev))
+            {
+                luvut.Remove(prev);
+            }
             if (luvut.Count == 1) { return luvut.ElementAt(0); }
             Random rand = new Random();
             int random = rand.Next(1, 4);

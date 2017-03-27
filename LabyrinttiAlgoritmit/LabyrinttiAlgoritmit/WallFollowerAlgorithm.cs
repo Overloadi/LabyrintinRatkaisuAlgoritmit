@@ -14,23 +14,26 @@ namespace LabyrinttiAlgoritmit
     class WallFollowerAlgorithm
     {
         public static bool solved = false;
-        public static int startcolindex = 3;
-        public static int startrowindex = 0;
-        public static int currentcolindex = startcolindex;
-        public static int currentrowindex = startrowindex;
-        public static int prevcolindex = 0;
-        public static int prevrowindex = 0;
-        public static int[,] matrix = new int[10, 10] {
-                                            {0, 0, 0, 3, 0, 0, 0, 0, 0, 0 },
-                                            {0, 1, 0, 1, 0, 0, 0, 1, 1, 0 },
-                                            {0, 1, 0, 1, 1, 1, 1, 1, 0, 0 },
-                                            {0, 1, 0, 1, 0, 1, 0, 1, 0, 0 },
-                                            {0, 1, 1, 1, 1, 1, 0, 1, 1, 4 },
-                                            {0, 1, 0, 0, 0, 1, 0, 0, 1, 0 },
-                                            {0, 1, 1, 1, 0, 1, 0, 1, 1, 0 },
-                                            {0, 1, 0, 1, 0, 1, 0, 0, 1, 0 },
-                                            {0, 1, 0, 1, 0, 1, 1, 1, 1, 0 },
-                                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },};
+        public static int startcolindex;
+        public static int startrowindex;
+        public static int currentcolindex;
+        public static int currentrowindex;
+        public static int prevcolindex;
+        public static int prevrowindex;
+        public static int[,] matrix;
+
+
+        public WallFollowerAlgorithm(int[,] uusmatrix, int uusstartrowindex, int uusstartcolindex)
+        {
+            matrix = uusmatrix;
+            startrowindex = uusstartrowindex;
+            startcolindex = uusstartcolindex;
+            currentcolindex = startcolindex;
+            currentrowindex = startrowindex;
+            prevcolindex = 0;
+            prevrowindex = 0;
+            wallFollower();
+        }
         public static void wallFollower()
         {
             int choice = 0;

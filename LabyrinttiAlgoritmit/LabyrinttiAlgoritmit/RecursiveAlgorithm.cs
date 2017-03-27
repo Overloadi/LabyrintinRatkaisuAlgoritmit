@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,28 +9,32 @@ namespace LabyrinttiAlgoritmit
 {
     class RecursiveAlgorithm
     {
-        public static int[,] maze = new int[10, 10] {
-                                            {0, 0, 0, 1, 0, 0, 0, 0, 0, 0 },
-                                            {0, 1, 0, 1, 0, 0, 0, 1, 1, 0 },
-                                            {0, 1, 0, 1, 1, 1, 1, 1, 0, 0 },
-                                            {0, 1, 0, 1, 0, 1, 0, 1, 0, 0 },
-                                            {0, 1, 1, 1, 1, 1, 0, 1, 1, 1 },
-                                            {0, 1, 0, 0, 0, 1, 0, 0, 1, 0 },
-                                            {0, 1, 1, 1, 0, 1, 0, 1, 1, 0 },
-                                            {0, 1, 0, 1, 0, 1, 0, 0, 1, 0 },
-                                            {0, 1, 0, 1, 0, 1, 1, 1, 1, 0 },
-                                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },};// The maze
-        public static bool[,] wasHere = new bool[10, 10];
-        public static bool[,] correctPath = new bool[10,10]; // The solution to the maze
-        public static int startX = 0;
-        public static int startY = 3; // Starting X and Y values of maze
-        public static int endX = 4;
-        public static int endY = 9;     // Ending X and Y values of maze
-        public static int height = 10;
-        public static int width = 10;
+        public static int[,] maze;
+        public static int startX;
+        public static int startY; // Starting X and Y values of maze
+        public static int endX;
+        public static int endY;     // Ending X and Y values of maze
+        public static int height;
+        public static int width;
+        public static bool[,] wasHere;
+        public static bool[,] correctPath; // The solution to the maze
 
+        public RecursiveAlgorithm(int[,]newmaze, int newstartx, int newstarty,int newendx,int newendy)
+        {
+            maze = newmaze;
+            height = maze.GetLength(0);
+            width = maze.GetLength(1);
+            wasHere = new bool[height, width];
+            correctPath = new bool[height, width]; // The solution to the maze
+            startX = newstartx;
+            startY = newstarty;
+            endX = newendx;
+            endY = newendy;
+            solveMaze();
+        }
         public static void solveMaze()
         {
+
             // Create Maze (1 = path, 2 = wall)
             for (int row = 0; row < maze.GetLength(1); row++)
                 // Sets boolean Arrays to default values
@@ -38,10 +43,14 @@ namespace LabyrinttiAlgoritmit
                     wasHere[row,col] = false;
                     correctPath[row,col] = false;
                 }
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
             bool b = recursiveSolve(startX, startY);
+            timer.Stop();
             Console.WriteLine(b);
+            Console.WriteLine("Aikaa labyritmin ratkaisemiseen meni: {0} sekuntia", timer.Elapsed.TotalSeconds);
             // Tulostus
-            var rowCount = maze.GetLength(0);
+            /* var rowCount = maze.GetLength(0);
             var colCount = maze.GetLength(1);
             for (int row = 0; row < rowCount; row++)
             {
@@ -61,6 +70,7 @@ namespace LabyrinttiAlgoritmit
 
                 Console.WriteLine();
             }
+            */
             // Will leave you with a boolean array (correctPath) 
             // with the path indicated by true values.
             // If b is false, there is no solution to the maze
