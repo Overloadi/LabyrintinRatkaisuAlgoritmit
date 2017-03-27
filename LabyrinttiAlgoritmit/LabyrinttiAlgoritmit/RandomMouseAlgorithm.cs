@@ -193,7 +193,11 @@ namespace LabyrinttiAlgoritmit
                         continue;
                     }
 
-                    if (matrix[currentrowindex - 1,currentcolindex] == 0)
+                    if (lookUp() == true)
+                    {
+                        continue;
+                    }
+                    else 
                     {
                         choice = generateRandom(choice);
                         switch (choice)
@@ -213,11 +217,11 @@ namespace LabyrinttiAlgoritmit
                         }
                         continue;
                     }
-                    else
+                    /*else
                     {
                         lookUp();
                         continue;
-                    }
+                    } */
                 }
 
                 // Jos edellinen ruutu oli nykyisen vasemmalla, jatketaan oikealle
@@ -361,9 +365,10 @@ namespace LabyrinttiAlgoritmit
         // Katsotaan vasemmalle
         public static bool lookLeft()
         {
+            if (matrix[currentrowindex, currentcolindex - 1] == 3) { return false; }
             if (matrix[currentrowindex, currentcolindex - 1] == 1 || matrix[currentrowindex, currentcolindex - 1] == 4)
             {
-                if (matrix[currentrowindex, currentcolindex - 1] == 3) { return false; }
+                
                 if (matrix[currentrowindex, currentcolindex - 1] == 4)
                 {
                     solved = true;
@@ -381,9 +386,10 @@ namespace LabyrinttiAlgoritmit
         // Katsotaan alas 
         public static bool lookDown()
         {
+            if (matrix[currentrowindex + 1, currentcolindex] == 3) { return false; }
             if (matrix[currentrowindex + 1, currentcolindex] == 1 || matrix[currentrowindex + 1, currentcolindex] == 4)
             {
-                if (matrix[currentrowindex + 1, currentcolindex] == 3) { return false; }
+                
                 if (matrix[currentrowindex + 1, currentcolindex] == 4)
                 {
                     solved = true;
@@ -401,9 +407,10 @@ namespace LabyrinttiAlgoritmit
         // Katsotaan oikealle
         public static bool lookRight()
         {
+            if (matrix[currentrowindex, currentcolindex + 1] == 3) { return false; }
             if (matrix[currentrowindex, currentcolindex + 1] == 1 || matrix[currentrowindex, currentcolindex + 1] == 4)
             {
-                if (matrix[currentrowindex, currentcolindex + 1] == 3) { return false; }
+                
                 if (matrix[currentrowindex, currentcolindex + 1] == 4)
                 {
                     solved = true;
@@ -421,9 +428,10 @@ namespace LabyrinttiAlgoritmit
         // Katsotaan ylös
         public static bool lookUp()
         {
+            if (matrix[currentrowindex - 1, currentcolindex] == 3) { return false; }
             if (matrix[currentrowindex - 1, currentcolindex] == 1 || matrix[currentrowindex - 1, currentcolindex] == 4)
             {
-                if (matrix[currentrowindex - 1, currentcolindex] == 3) { return false; }
+                
                 if (matrix[currentrowindex - 1, currentcolindex] == 4)
                 {
                     solved = true;
