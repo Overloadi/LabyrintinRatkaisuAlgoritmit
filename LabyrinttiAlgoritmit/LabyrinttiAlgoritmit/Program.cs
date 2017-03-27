@@ -29,7 +29,19 @@ namespace LabyrinttiAlgoritmit
                                             {0, 1, 0, 1, 0, 1, 0, 0, 1, 0 },
                                             {0, 1, 0, 1, 0, 1, 1, 1, 1, 0 },
                                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },};
-        int[,] matrix40 = new int[40, 40]
+            int[,] matrix15 = new int[10, 15] {
+                                            {0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                                            {0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0},
+                                            {0, 1, 0, 1, 1, 1, 1, 1, 0, 0 ,1, 1, 1, 0, 0},
+                                            {0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ,1, 0, 1, 0, 0},
+                                            {0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0},
+                                            {0, 0, 0, 0, 0, 1, 0, 0, 1, 0 ,1, 0, 1, 0, 0},
+                                            {0, 1, 1, 1, 0, 1, 0, 1, 1, 0 ,1, 0, 1, 0, 0},
+                                            {0, 1, 0, 1, 0, 1, 0, 0, 1, 0 ,1, 0, 1, 0, 0},
+                                            {0, 1, 0, 1, 0, 1, 0, 1, 1, 0 ,1, 0, 1, 1, 4},
+                                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            };
+            int[,] matrix40 = new int[40, 40]
         {
 {0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 {0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -284,8 +296,14 @@ int[,] matrix100 = new int[100,100]
 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},};
             // WallFollowerAlgorithm testi100 = new WallFollowerAlgorithm(matrix100, 0, 6);
             // RecursiveAlgorithm testi100p2 = new RecursiveAlgorithm(matrix100, 0, 6, 99, 91);
-            WallFollowerAlgorithm testi50 = new WallFollowerAlgorithm(matrix50, 0, 4);
-            RecursiveAlgorithm testi50p2 = new RecursiveAlgorithm(matrix50, 0, 4, 1, 49);
+            // WallFollowerAlgorithm testi50 = new WallFollowerAlgorithm(matrix50, 0, 4);
+            // RecursiveAlgorithm testi50p2 = new RecursiveAlgorithm(matrix50, 0, 4, 1, 49);
+            // RandomMouseAlgorithm testi20 = new RandomMouseAlgorithm(matrix20, 0, 16);
+            // RandomMouseAlgorithm testi10 = new RandomMouseAlgorithm(matrix10, 0, 3);
+            // RandomMouseAlgorithm testi15 = new RandomMouseAlgorithm(matrix15, 0, 3);
+            // RandomMouseAlgorithm testi30 = new RandomMouseAlgorithm(matrix30, 0, 6);
+            // RandomMouseAlgorithm testi100 = new RandomMouseAlgorithm(matrix100, 0, 7);
+            RandomMouseAlgorithm testi50 = new RandomMouseAlgorithm(matrix50, 0, 4);
             // WallFollowerAlgorithm.wallFollower();
             //RandomMouseAlgorithm.randomMouseAlgorithm();
             // Console.WriteLine("Aikaa labyritmin ratkaisemiseen meni: {0} sekuntia", timer.Elapsed.TotalSeconds);
