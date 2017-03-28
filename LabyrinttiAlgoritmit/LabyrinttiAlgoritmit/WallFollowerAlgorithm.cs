@@ -77,7 +77,7 @@ namespace LabyrinttiAlgoritmit
                 currentrowindex++;
                 prevrowindex = 0;
                 prevcolindex = currentcolindex;
-                Console.WriteLine("Liikuttu alas");
+                // Console.WriteLine("Liikuttu alas");
             }
 
             // Jos alkupiste on vasemmalla
@@ -86,7 +86,7 @@ namespace LabyrinttiAlgoritmit
                 currentcolindex++;
                 prevcolindex = 0;
                 prevrowindex = currentrowindex;
-                Console.WriteLine("Liikuttu oikealle");
+                // Console.WriteLine("Liikuttu oikealle");
             }
 
             // Jos alkupiste on alhaalla
@@ -95,7 +95,7 @@ namespace LabyrinttiAlgoritmit
                 currentrowindex--;
                 prevrowindex = 9;
                 prevcolindex = currentcolindex;
-                Console.WriteLine("Liikuttu ylös");
+                // Console.WriteLine("Liikuttu ylös");
             }
 
             // Jos alkupiste on oikella
@@ -104,11 +104,11 @@ namespace LabyrinttiAlgoritmit
                 currentcolindex--;
                 prevcolindex = 9;
                 prevrowindex = currentrowindex;
-                Console.WriteLine("Liikuttu vasemmalle");
+                // Console.WriteLine("Liikuttu vasemmalle");
             }
 
 
-
+            // While - loop, kunnes ulospääsy löytyy
             while (!solved)
             {
                 // Jos edellinen ruutu oli nykyisen yläpuolella
@@ -281,7 +281,7 @@ namespace LabyrinttiAlgoritmit
                 prevcolindex = currentcolindex;
                 currentcolindex--;
                 if (prevrowindex != currentrowindex) { prevrowindex = currentrowindex; }
-                Console.WriteLine("Liikuttu vasemmalle");
+                // Console.WriteLine("Liikuttu vasemmalle");
                 return true;
             }
             return false;
@@ -300,7 +300,7 @@ namespace LabyrinttiAlgoritmit
                 prevrowindex = currentrowindex;
                 currentrowindex++;
                 if (prevcolindex != currentcolindex) { prevcolindex = currentcolindex; }
-                Console.WriteLine("Liikuttu alas");
+                // Console.WriteLine("Liikuttu alas");
                 return true;
             }
             return false;
@@ -319,7 +319,7 @@ namespace LabyrinttiAlgoritmit
                 prevcolindex = currentcolindex;
                 currentcolindex++;
                 if (prevrowindex != currentrowindex) { prevrowindex = currentrowindex; }
-                Console.WriteLine("Liikuttu oikealle");
+                // Console.WriteLine("Liikuttu oikealle");
                 return true;
             }
             return false;
@@ -338,7 +338,7 @@ namespace LabyrinttiAlgoritmit
                 prevrowindex = currentrowindex;
                 currentrowindex--;
                 if (prevcolindex != currentcolindex) { prevcolindex = currentcolindex; }
-                Console.WriteLine("Liikuttu ylos");
+                // Console.WriteLine("Liikuttu ylos");
                 return true;
             }
             return false;
@@ -360,7 +360,7 @@ namespace LabyrinttiAlgoritmit
                 prevcolindex = currentcolindex;
                 currentcolindex--;
                 if (prevrowindex != currentrowindex) { prevrowindex = currentrowindex; }
-                Console.WriteLine("Liikuttu vasemmalle");
+                // Console.WriteLine("Liikuttu vasemmalle");
                 return true;
             }
             return false;
@@ -379,7 +379,7 @@ namespace LabyrinttiAlgoritmit
                 prevrowindex = currentrowindex;
                 currentrowindex++;
                 if (prevcolindex != currentcolindex) { prevcolindex = currentcolindex; }
-                Console.WriteLine("Liikuttu alas");
+                // Console.WriteLine("Liikuttu alas");
                 return true;
             }
             return false;
@@ -398,7 +398,7 @@ namespace LabyrinttiAlgoritmit
                 prevcolindex = currentcolindex;
                 currentcolindex++;
                 if (prevrowindex != currentrowindex) { prevrowindex = currentrowindex; }
-                Console.WriteLine("Liikuttu oikealle");
+                // Console.WriteLine("Liikuttu oikealle");
                 return true;
             }
             return false;
@@ -417,7 +417,7 @@ namespace LabyrinttiAlgoritmit
                 prevrowindex = currentrowindex;
                 currentrowindex--;
                 if (prevcolindex != currentcolindex) { prevcolindex = currentcolindex; }
-                Console.WriteLine("Liikuttu ylos");
+                // Console.WriteLine("Liikuttu ylos");
                 return true;
             }
             return false;

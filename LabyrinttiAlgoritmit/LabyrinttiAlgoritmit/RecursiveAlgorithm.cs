@@ -50,27 +50,27 @@ namespace LabyrinttiAlgoritmit
             Console.WriteLine(b);
             Console.WriteLine("Aikaa labyritmin ratkaisemiseen meni: {0} sekuntia", timer.Elapsed.TotalSeconds);
             // Tulostus
-            /* var rowCount = maze.GetLength(0);
+            var rowCount = maze.GetLength(0);
             var colCount = maze.GetLength(1);
             for (int row = 0; row < rowCount; row++)
             {
                 for (int col = 0; col < colCount; col++)
-                    if (wasHere[row, col] == true)
+                    if (correctPath[row, col] == true)
                     {
                         Console.BackgroundColor = ConsoleColor.Black;
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write(String.Format("{0} ", maze[row, col]));
+                        Console.Write(String.Format("{0} ", 1));
                     }
                     else
                     {
                         Console.BackgroundColor = ConsoleColor.Black;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write(String.Format("{0} ", maze[row, col]));
+                        Console.Write(String.Format("{0} ", 0));
                     }
 
                 Console.WriteLine();
             }
-            */
+            
             // Will leave you with a boolean array (correctPath) 
             // with the path indicated by true values.
             // If b is false, there is no solution to the maze
@@ -78,7 +78,7 @@ namespace LabyrinttiAlgoritmit
         public static bool recursiveSolve(int x, int y)
         {
             if (x == endX && y == endY) return true; // If you reached the end
-            if (maze[x,y] == 2 || wasHere[x,y]) return false;
+            if (maze[x,y] == 0 || wasHere[x,y]) return false;
             // If you are on a wall or already were here
             wasHere[x,y] = true;
             if (x != 0) // Checks if not on left edge
